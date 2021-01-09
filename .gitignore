@@ -38,4 +38,6 @@ Thumbs.db
 
 # My Generated Files#
 #####################
-settings.py
+my_secret.py
+.env
+*.txt
