@@ -1,0 +1,2 @@
+# inventory
+Django Inventory App
