@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<h2>Supplies</h2>
+<div class="row">
+    <div class="records">
+        <h3>Record Of Returns</h3>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Status</td>
+                <td>Merchant Ref Number</td>
+            </tr>
+            {% for item in object_list %}
+            <tr>
+                <td>{{ item.date.date }}</td>
+                <td>{{ item.stock_receipt.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    {% if item.verified %}
+                    Verified
+                    {% else %}
+                    <a href="{% url 'update-stock-return' pk=item.pk %}">Edit Entry</a>
+                    {% endif %}
+                </td>
+                <td><a href="#">{{ item.stock_receipt.merchant_ref_number }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="entry-form">
+        <h3>Edit Returns</h3>
+        {% if form.errors %}
+            <em>Please correct the following:</em>
+            <li class="text-danger small">{{ form.non_field_errors }}</li>
+            {% for field in form %}
+                {% if field.errors %}<li class="text-danger small">{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+            {% endfor %}
+        {% endif %}
+        <form action="" method="POST">{% csrf_token %}
+            {% for form in form %}
+                <!-- {{ form.errors }} -->
+                {{ form.label_tag }}
+                {{ form }}<br>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

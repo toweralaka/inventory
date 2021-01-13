@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<h2>Supplies</h2>
+<div class="row">
+    <div class="records">
+        <h3>Record Of Returns</h3>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Status</td>
+                <td>Ref Number</td>
+            </tr>
+            {% for item in object_list %}
+            <tr>
+                <td>{{ item.date.date }}</td>
+                <td>{{ item.supply.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    {% if item.verified %}
+                    Verified
+                    {% else %}
+                    <a href="{% url 'supply-confirm' pk=item.pk %}">Unverified(Edit)</a>
+                    {% endif %}
+                </td>
+                <td><a href="#">{{ item.supply.ref_number }}</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="empty" colspan="5"><p>No Confirmed Returns</p></td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+    </div>
+    <div class="entry-form">
+        <h3>Pending Returns</h3>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Merchant Ref Number</td>
+            </tr>
+            {% for item in pending_list %}
+            <tr>
+                <td>{{ item.date.date }}</td>
+                <td>{{ item.supply.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td><a href="{% url 'return-confirm' pk=item.pk %}">{{ item.supply.ref_number }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

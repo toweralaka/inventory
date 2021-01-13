@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<h2>Receipts</h2>
+<div class="row">
+    <div class="records">
+        <h3>Record Of Receipts</h3>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Status</td>
+                <td>&nbsp;</td>
+            </tr>
+            {% for item in object_list %}
+            <tr>
+                <td>{{ item.date.date }}</td>
+                <td>{{ item.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    {% if item.verified %}
+                    Verified
+                    {% else %}
+                    <a href="{% url 'confirm-dept-receipt' pk=item.pk %}">Unverified(Edit)</a>
+                    {% endif %}
+                </td>
+                <td><a href="#">View</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="empty" colspan="5"><p>No Confirmed Receipts</p></td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+    </div>
+    <div class="entry-form">
+        <h3>Pending Receipt Confirmation</h3>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Ref Number</td>
+            </tr>
+            {% for item in pending_list %}
+            <tr>
+                <td>{{ item.date.date }}</td>
+                <td>{{ item.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td><a href="{% url 'confirm-dept-receipt' pk=item.pk %}">{{ item.ref_code }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

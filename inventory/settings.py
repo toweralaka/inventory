@@ -42,6 +42,8 @@ EMAIL_PORT = 587
 # Application definition
 
 INSTALLED_APPS = [
+    'schedule',
+    'userdata',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
