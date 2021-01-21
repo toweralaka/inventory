@@ -1,0 +1,270 @@
+/* <span>Photo by <a href="https://unsplash.com/@tabrez_syed?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Tabrez Syed</a> on <a href="https://unsplash.com/s/photos/food-store?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */
+
+body {
+    color: rgb(49,72,158);
+    margin: 0;
+}
+
+#div-wrap {
+    width: 100%;
+}
+#navbar {
+    border-right: 2px solid gray;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    width: 20%;
+    color: seashell;
+    background-color: rgb(49,72,158);
+}
+h1 {
+    font-weight: 900;
+    font-size: 6.5vmin;
+    color: seashell;
+}
+header {
+    padding: 1%;
+}
+#nav-wrap {
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+}
+#nav-wrap a:hover {
+    color: rgb(117, 86, 189);
+    }
+.nav-link {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    padding: 3%;
+    text-decoration: none;
+    font-size: 1.3em;
+}
+.nav-item {
+    margin: 1% auto;
+    text-transform: capitalize;
+    color: seashell;
+}
+main {
+    /* height: 90%; */
+    /* position: absolute; */
+    /* font-size: x-large; */
+    line-height: 1.5;
+    font-weight: bold;
+    /* font-size: 1.6vmax; */
+    margin-left: 20%;
+    padding: 1%;
+}
+#top-logo {
+    width: 100%;
+    height: auto;
+    text-align: right;
+}
+#d-logo {
+    width: 20%;
+}
+.messages {
+    background-color: rgba(49,72,158, 0.2);
+    line-height: 2;
+    font-size: 1.5em;
+    text-align: center;
+    /* border: solid 1px rgb(187, 235, 235);; */
+}
+#greetings {
+    margin-top: 15% ;
+    margin-bottom: 25%;
+    text-align: center;
+    text-transform: capitalize;
+}
+.text-danger {
+    color: #8B2313;
+    font-size: 1.3vmax;
+    font-style: italic;
+    font-weight: 700;
+    background-color: #F0F0F0;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.records {
+    text-align: center;
+    width: 45%;
+    background: rgba(49,72,158, 0.1);
+    padding: 1%;
+}
+.entry-form {
+    text-align: center;
+    width: 45%;
+    background: rgba(49,72,158, 0.1);
+    padding: 1%;
+}
+table, table tr{
+    width: 100%;
+}
+/* table tr {
+    padding: 2%;
+} */
+table tr td {
+    width: auto;
+    line-height: 2;
+}
+table thead {
+    text-transform: uppercase;
+
+}
+table tr:nth-child(odd) {
+    background: rgba(49,72,158,0.2);
+}
+.del-item {
+    color: red;
+}
+form input[type=submit], button {
+    line-height: 2;
+    border-radius: 4px;
+    width: 80%;
+    background: rgb(29, 38, 113);
+    font-weight: bold;
+    color: seashell;
+    letter-spacing: .05em;
+     text-align: center;
+     text-transform: uppercase;
+     cursor: pointer;
+     border-color: rgba(196, 156, 233, 0.6);
+     margin: auto;
+    }
+.pass-form {
+    width: 80%;
+    margin: auto;
+}
+#inline-form input[type=submit], button {
+    line-height: 2;
+    border-radius: 4px;
+    width: auto;
+    background: rgb(29, 38, 113);
+    font-weight: bold;
+    color: seashell;
+    letter-spacing: .05em;
+     text-align: center;
+     text-transform: uppercase;
+     cursor: pointer;
+     border-color: rgba(196, 156, 233, 0.6);
+     margin: auto;
+    }
+.link-btn {
+    background-color: rgb(29, 38, 113);
+    color: seashell;
+    font-weight: bold;
+    padding: 4%; /* 4px */
+    border-radius: 4px;
+    width: 80%;
+    text-align: center;
+    text-decoration: none;
+}
+.link-btn-cover {
+    text-align: center;
+}
+#signup {
+    color: rgb(29, 38, 113);
+    font-weight: bold;
+    line-height: 1.5;
+    width: 80%;
+    margin: auto;
+}
+#signup h1 {
+    color: rgb(29, 38, 113);
+}
+#signup table {
+    text-align: center;
+}
+#signup form {
+    /* padding: 2%; */
+    background-color: rgba(29, 38, 113, 0.1);
+    text-align: center;
+}
+#signup form ul {
+    list-style: none;
+    /* width: 50%; */
+
+}
+#signup form ul li input{
+    width: 5%;
+
+}
+#signup form, #signup form input[type=submit], #signup form input {
+    width: 80%;
+    margin: auto;
+    padding: 1%;
+}
+/* .terminal {
+    width: 80%;
+    text-overflow: scroll;
+    border: 1px solid gray;
+    margin: auto;
+    padding: 1%;
+}
+.code-head {
+    font-size: small;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0;
+} */
+/* pre {
+    margin-top: 0;
+}
+pre code {
+
+    font-size: small;
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    width: 80%;
+    padding: 2%;
+    margin: auto;
+    overflow: scroll;
+} */
+footer {
+    opacity: 0.5;
+    text-align: right;
+}
+@media (max-width: 350px) {
+    h2 {
+        font-size: 1.5em;
+    }
+    
+    #main-doc {
+        left: 2px;
+    }
+    main {
+        line-height: 1.5;
+    }
+}
+@media screen and (max-width: 600px) {
+    #navbar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    main {
+        margin-left: 0;
+        font-size: 1.3em;
+    }
+    .row {
+      flex-direction: column;
+      justify-content: stretch;
+      row-gap: 20px;
+    }
+    .records {
+        width: auto;
+        padding: 2%;
+    }
+    .entry-form {
+        width: auto;
+        padding: 2%;
+    }
+  }

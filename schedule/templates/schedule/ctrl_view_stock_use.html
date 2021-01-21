@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<h2>Supplies</h2>
+<div>
+    <div>
+        {% if display_message %}
+            <li class="text-danger small">{{ display_message }}</li>
+        {% endif %}
+        {% if form.errors %}
+            <em>Please correct the following:</em>
+            <li class="text-danger small">{{ form.non_field_errors }}</li>
+            {% for field in form %}
+                {% if field.errors %}<li class="text-danger small">{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+            {% endfor %}
+        {% endif %}
+        <form id="inline-form" action="" method="POST">{% csrf_token %}
+            {{ form.branch.label_tag }} {{ form.branch }}
+            {{ form.start_date.label_tag }}
+            <input name="start_date" required id="id_start_date" type="date" />
+            {{ form.end_date.label_tag }}
+            <input name="end_date" required id="id_end_date" type="date" />
+            <input type="submit" name="view" value="View">
+            <input name="export" type="submit" value="Export CSV">
+        </form>
+    </div>
+    <div class="ctrl-records">
+        <h3>Items Issued</h3>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Unit Price</td>
+                <td>Amount</td>
+            </tr>
+            {% for item in object_list %}
+            <tr>
+                <td>{{ item.date.date }}</td>
+                <td>{{ item.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.get_unit_price }}</td>
+                <td>{{ item.get_amount }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="empty" colspan="5"><p>No Record Found</p></td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<div id="signup">
+    <div>
+    <a href="{% url 'import-format' %}">Download Import Format</a><br />
+    </div>
+    {% if object_list %}
+    <p class="text-danger small">
+        {% for item in object_list %}
+        {{ item }},
+        {% endfor %}
+        successfully uploaded
+    </p>
+    {% endif %}
+    {% if display_message %}
+        <li class="text-danger small">{{ display_message }}</li>
+    {% endif %}
+    {% if form.errors %}
+        <em>Please correct the following:</em>
+        <li class="text-danger small">{{ form.non_field_errors }}</li>
+        {% for field in form %}
+            {% if field.errors %}<li class="text-danger small">{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+        {% endfor %}
+    {% endif %}
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <h2>IMPORT PRODUCT(s)</h2>
+        {% for form in form %}
+            {{ form.label_tag }}<br />
+            {{ form }}<br />
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}

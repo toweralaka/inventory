@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<h2>Deletion</h2>
+<div class="row">
+    <div class="records">
+        <h3>Record To Delete</h3>
+        <table>
+
+            
+            <tr>
+                <td>PRODUCT: </td>
+                <td>{{ item.stock_receipt.product }}</td>
+            </tr>
+            <tr>
+                <td>QUANTITY: </td>
+                <td>{{ item.quantity }}</td>
+            </tr>
+            <tr>
+                <td>DATE: </td>
+                <td>{{ item.date.date }}</td>
+            </tr>
+            <tr>
+                <td>OFFICER: </td>
+                <td>{{ item.officer }}</td>
+            </tr>
+            <tr>
+                <td>REF CODE: </td>
+                <td>{{ item.ref_code }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="entry-form">
+        <h3>Confirm Deletion</h3>
+        {% if display_message %}
+            <li class="text-danger small">{{ display_message }}</li>
+        {% endif %}
+        {% if form.errors %}
+            <em>Please correct the following:</em>
+            <li class="text-danger small">{{ form.non_field_errors }}</li>
+            {% for field in form %}
+                {% if field.errors %}<li class="text-danger small">{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+            {% endfor %}
+        {% endif %}
+        <form action="" method="POST">{% csrf_token %}
+            {% for form in form %}
+                <!-- {{ form.errors }} -->
+                {{ form.label_tag }}<br />
+                {{ form }}<br />
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

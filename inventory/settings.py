@@ -42,6 +42,8 @@ EMAIL_PORT = 587
 # Application definition
 
 INSTALLED_APPS = [
+    'schedule.apps.ScheduleConfig',
+    'userdata.apps.UserdataConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,10 +64,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'inventory.urls'
 
+LOGIN_REDIRECT_URL = 'home'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -128,4 +132,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static_general",
+]
+STATIC_ROOT = BASE_DIR / "static"
+
+#media files
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / "media/"
+
