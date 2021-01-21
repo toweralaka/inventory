@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<div id="signup">
+    {% if display_message %}
+        <li class="text-danger small">{{ display_message }}</li>
+    {% endif %}
+    {% if form.errors %}
+        <em>Please correct the following:</em>
+        <li class="text-danger small">{{ form.non_field_errors }}</li>
+        {% for field in form %}
+            {% if field.errors %}<li class="text-danger small">{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+        {% endfor %}
+    {% endif %}
+    <form action="" method="POST">{% csrf_token %}
+        <h2>ACTIVATE</h2>
+        {% if officer %}
+            Officer Name: {{ officer.name }}<br />
+            Officer Number: {{ officer.employee_code }}<br />
+            Officer Phone Number: {{ officer.phone_number }}<br />
+            {{ form }}<br />
+        {% endif %}
+        {% if merchant %}
+            Merchant Name: {{ merchant.name }}<br />
+            Merchant Liaison Officer: {{ merchant.liaison_officer }}<br />
+            Merchant Phone Number: {{ merchant.phone_number }}<br />
+            {{ form }}<br />
+        {% endif %}
+        Confirm: <br /><input type="checkbox" name="confirm" required>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}

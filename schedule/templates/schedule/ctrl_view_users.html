@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<h2>Pending Users</h2>
+<div>
+    <div class="ctrl-records">
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Name</td>
+                <td>Phone</td>
+                <td>Type</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3"><h3>Pending Staff</h3></td>
+            </tr>
+            {% for item in officer_list %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.phone_number }}</td>
+                <td>Officer</td>
+                <td class="link-btn-cover"><a class="link-btn" href="{% url 'activate-user' pk=item.user.pk %}">VIEW</a></td>
+                <td class="link-btn-cover"><a class="link-btn" href="{% url 'delete-user' pk=item.user.pk %}">DELETE</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="empty" colspan="5"><p>No Record Found</p></td>
+            </tr>
+            
+            {% endfor %}
+            <tr>
+                <td colspan="3"><h3>Pending Merchant</h3></td>
+            </tr>
+            {% for item in merchant_list %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.phone_number }}</td>
+                <td>Merchant</td>
+                <td class="link-btn-cover"><a class="link-btn" href="{% url 'activate-user' pk=item.user.pk %}">VIEW</a></td>
+                <td class="link-btn-cover"><a class="link-btn" href="{% url 'delete-user' pk=item.user.pk %}">DELETE</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="empty" colspan="5"><p>No Record Found</p></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

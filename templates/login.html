@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <title>
+        Login -BSL
+    </title>
+    <meta name="theme-color" content="#fff" />
+</head>
+<body>
+    <div id="login">
+        <div class="container">
+            <div id="login-form">
+                {% if form.errors %}
+                <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access.</p>
+                    {% else %}
+                    <p>Please login to see this page.</p>
+                    {% endif %}
+                {% endif %}
+
+                <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <img src="{% static 'images/logos.png' %}" />
+                        </td>
+                    </tr>
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" value="login"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </td>
+                </tr>
+                </table>                
+                </form>
+
+                {# Assumes you setup the password_reset view in your URLconf #}
+                <p class="reset">
+                    <a href="{% url 'password_reset' %}">Lost password?</a> &nbsp;
+                    <a href="{% url 'signup' %}">Signup</a>
+                </p>
+            </div>
+
+            <footer>Copyright 2020 <a href="https://bslafrica.com/">BSL</a> &nbsp;Powered by: <a href="http://diamantemine.com/">DML</a></footer>
+        </div>
+    </div>
+</body>
+</html>

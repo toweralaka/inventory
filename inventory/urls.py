@@ -18,11 +18,9 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include, re_path
 
 from .views import home#, login, logout
-from schedule.views import (
-    merchant_supply_view, merchant_return_view, stock_receipts, 
-    merchant_confirm_supply, stock_return, items_issued, items_received, 
-    dept_receipt_view, dept_return_view, merchant_confirm_return, view_supply, 
-    update_stock_receipt, update_stock_return, confirm_dept_receipt)
+from schedule import views as iviews
+
+
 
 urlpatterns = [
     path('', home, name='home'),
@@ -31,10 +29,14 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(
         next_page='/accounts/login/'), name='logout'),
     # path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/password_change/', auth_views.PasswordChangeView.as_view(), 
-        name='password_change'),
-    path('accounts/password_change/done/', auth_views.PasswordChangeDoneView.as_view(), 
-        name='password_change_done'),
+    # path('accounts/password_change/', auth_views.PasswordChangeView.as_view(), 
+    #     name='password_change'),
+    # path('accounts/password_change/done/', auth_views.PasswordChangeDoneView.as_view(), 
+    #     name='password_change_done'),
+    path('accounts/password_change/', auth_views.PasswordChangeView.as_view(
+        template_name = 'change_password.html'), name='password_change'),
+    path('accounts/password_change/done/', auth_views.PasswordChangeDoneView.as_view(
+        template_name = 'change_password_done.html'), name='password_change_done'),
     path('accounts/password_reset/', auth_views.PasswordResetView.as_view(), 
         name='password_reset'),
     path('accounts/password_reset/done/', auth_views.PasswordResetDoneView.as_view(), 
@@ -55,19 +57,47 @@ urlpatterns = [
     path('admin/reset-password/complete/', auth_views.PasswordResetCompleteView.as_view(), 
         name='password_reset_complete'),
     path('admin/', admin.site.urls),
-    path('merchant-supply', merchant_supply_view, name='merchant-supply'),
-    path('merchant-return', merchant_return_view, name='merchant-return'),
-    path('stock-receipt', stock_receipts, name='stock-receipt'),
-    path('<int:pk>/supply-confirm', merchant_confirm_supply, name='supply-confirm'),
-    path('<int:pk>/return-confirm', merchant_confirm_return, name='return-confirm'),
-    path('<int:pk>/update-stock', update_stock_receipt, name='update-stock'),
-    path('<int:pk>/update-stock-return', update_stock_return, name='update-stock-return'),
-    path('<int:pk>/item-view', view_supply, update_stock_receipt, name='item-view'),
-    path('stock-return', stock_return, name='stock-return'),
-    path('items-issued', items_issued, name='items-issued'),
-    path('items-received', items_received, name='items-received'),
-    path('dept-issue', dept_return_view, name='dept-issue'),
-    path('dept-receipt', dept_receipt_view, name='dept-receipt'),
-    path('<int:pk>/confirm-dept-receipt', confirm_dept_receipt, name='confirm-dept-receipt'),
-    # path('inventory/', include('inventory.urls')) call urls from here
+    
+    path('stock-receipt', iviews.stock_receipts, name='stock-receipt'),
+    path('merchant-supply', iviews.merchant_supply_view, name='merchant-supply'),
+    path('<int:pk>/supply-confirm', iviews.merchant_confirm_supply, name='supply-confirm'),
+    path('<int:pk>/update-stock', iviews.update_stock_receipt, name='update-stock'),
+    
+    path('stock-return', iviews.stock_return, name='stock-return'),
+    path('merchant-return', iviews.merchant_return_view, name='merchant-return'),
+    path('<int:pk>/return-confirm', iviews.merchant_confirm_return, name='return-confirm'),
+    path('<int:pk>/update-stock-return', iviews.update_stock_return, name='update-stock-return'),
+    
+    path('items-issued', iviews.items_issued, name='items-issued'),
+    path('dept-receipt', iviews.dept_receipt_view, name='dept-receipt'),
+    path('<int:pk>/confirm-dept-receipt', iviews.confirm_dept_receipt, name='confirm-dept-receipt'),
+    path('<int:pk>/update-items-issued', iviews.update_items_issued, name='update-items-issued'),
+    
+    path('items-received', iviews.items_received, name='items-received'),
+    path('dept-issue', iviews.dept_return_view, name='dept-issue'),
+    path('<int:pk>/confirm-dept-return', iviews.confirm_dept_return, name='confirm-dept-return'),
+    path('<int:pk>/update-items-received', iviews.update_items_received, name='update-items-received'),
+
+    # path('<int:pk>/item-view', iviews.view_supply, name='item-view'),
+    path('view-stock-use', iviews.view_stock_use, name='view-stock-use'),
+    path('view-supply', iviews.control_view_supply, name='view-supply'),
+    path('view-return', iviews.control_view_return, name='view-return'),
+    path('view-issue', iviews.control_view_issue, name='view-issue'),
+    path('view-dept-return', iviews.control_view_dept_return, name='view-dept-return'),
+    path('<int:pk>/delete-supply', iviews.control_delete_supply, name='delete-supply'),
+    path('<int:pk>/delete-return', iviews.control_delete_return, name='delete-return'),
+    path('<int:pk>/delete-issue', iviews.control_delete_issue, name='delete-issue'),
+    path('<int:pk>/delete-dept-return', iviews.control_delete_dept_return, name='delete-dept-return'),
+    path('create-merchant', iviews.ctrl_create_merchant, name='create-merchant'),
+    path('create-staff', iviews.ctrl_create_staff, name='create-staff'),
+    path('view-users', iviews.pending_users, name='view-users'),
+    path('<int:pk>/activate-user', iviews.activate_user, name='activate-user'),
+    path('<int:pk>/delete-user', iviews.delete_user, name='delete-user'),
+    path('import-db', iviews.import_db, name='import-db'),
+    path('import-format', iviews.import_format, name='import-format'),
+
+    path('staff/signup', iviews.staff_signup, name='staff-signup'),
+    path('signup', iviews.merchant_signup, name='signup'),
+    
+    
 ]

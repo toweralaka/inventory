@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<h2>Items Issued</h2>
+<div>
+    <div class="ctrl-records">
+        <h3>Record Of Items Issued</h3>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Status</td>
+                <td>&nbsp;</td>
+            </tr>
+            {% for item in object_list %}
+            <tr>
+                <td>{{ item.date.date }}</td>
+                <td>{{ item.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    {% if item.verified %}
+                    Confirmed
+                    {% else %}
+                    Unconfirmed
+                    {% endif %}
+                </td>
+                <td><a class="del-item" href="{% url 'delete-issue' pk=item.pk %}">Delete</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="empty" colspan="5"><p>No Record Of Items Issued</p></td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

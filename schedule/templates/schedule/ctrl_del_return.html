@@ -7,37 +7,40 @@
 {% endblock %}
 
 {% block main %}
-<h2>Receipts</h2>
+<h2>Deletion</h2>
 <div class="row">
     <div class="records">
-        <h3>Record Of Receipts</h3>
+        <h3>Record To Delete</h3>
         <table>
+
+            
             <tr>
-                <td>Date</td>
-                <td>Product</td>
-                <td>Quantity</td>
-                <td>Status</td>
-                <td>Ref Number</td>
+                <td>PRODUCT: </td>
+                <td>{{ item.stock_receipt.product }}</td>
             </tr>
-            {% for item in object_list %}
             <tr>
-                <td>{{ item.date.date }}</td>
-                <td>{{ item.product }}</td>
+                <td>QUANTITY: </td>
                 <td>{{ item.quantity }}</td>
-                <td>
-                    {% if item.verified %}
-                    Verified
-                    {% else %}
-                    <a href="{% url 'update-items-received' pk=item.pk %}">Edit Entry</a>
-                    {% endif %}
-                </td>
-                <td><a href="#">{{ item.ref_code }}</a></td>
             </tr>
-            {% endfor %}
+            <tr>
+                <td>DATE: </td>
+                <td>{{ item.date.date }}</td>
+            </tr>
+            <tr>
+                <td>OFFICER: </td>
+                <td>{{ item.officer }}</td>
+            </tr>
+            <tr>
+                <td>REF CODE: </td>
+                <td>{{ item.ref_code }}</td>
+            </tr>
         </table>
     </div>
     <div class="entry-form">
-        <h3>Enter Items Receipts</h3>
+        <h3>Confirm Deletion</h3>
+        {% if display_message %}
+            <li class="text-danger small">{{ display_message }}</li>
+        {% endif %}
         {% if form.errors %}
             <em>Please correct the following:</em>
             <li class="text-danger small">{{ form.non_field_errors }}</li>
@@ -48,8 +51,8 @@
         <form action="" method="POST">{% csrf_token %}
             {% for form in form %}
                 <!-- {{ form.errors }} -->
-                {{ form.label_tag }}
-                {{ form }}<br>
+                {{ form.label_tag }}<br />
+                {{ form }}<br />
             {% endfor %}
             <input type="submit" value="Submit">
         </form>

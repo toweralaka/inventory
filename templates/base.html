@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <title>
+        {% block title %}
+        {% endblock %}
+         -BSL
+    </title>
+    <meta name="theme-color" content="#fff" />
+</head>
+<body>
+    <div id="div-wrap">
+        {% block supermain %}
+        <nav id="navbar">
+            <div id="nav-wrap">
+                <header>
+                    <h1>
+                        {% if request.user.merchant %}
+                            {{ request.user.merchant.name }}
+                        {% else %}
+                            {{ request.user.officer.name }}
+                        {% endif %}
+                    </h1>
+                </header>
+                {% if request.user.merchant %}
+                <a class="nav-link" href="{% url 'merchant-supply' %}"><p class="nav-item">Products Supplied</p></a>
+                <a class="nav-link" href="{% url 'merchant-return' %}"><p class="nav-item">Products Retrieved</p></a>
+                {% endif %}
+                {% if request.user.officer %}
+                    {% if request.user.officer.department == 'dept_3' %}
+                    <a class="nav-link" href="{% url 'stock-receipt' %}"><p class="nav-item">Supply From Merchant</p></a>
+                    <a class="nav-link" href="{% url 'stock-return' %}"><p class="nav-item">Returns To Merchant</p></a>
+                    <a class="nav-link" href="{% url 'items-issued' %}"><p class="nav-item">Items Issued</p></a>
+                    <a class="nav-link" href="{% url 'items-received' %}"><p class="nav-item">Items Received</p></a>
+                    {% else %}
+                        {% if request.user.officer.department == 'dept_1' %}
+                        <a class="nav-link" href="{% url 'import-db' %}"><p class="nav-item">Import Stock Database</p></a>
+                        <a class="nav-link" href="{% url 'view-stock-use' %}"><p class="nav-item">View Stock Use</p></a>
+                        <a class="nav-link" href="{% url 'create-staff' %}"><p class="nav-item">Create Staff Account</p></a>
+                        <a class="nav-link" href="{% url 'create-merchant' %}"><p class="nav-item">Create Merchant Account</p></a>
+                        <a class="nav-link" href="{% url 'view-users' %}"><p class="nav-item">View Registered Users</p></a>
+                        <a class="nav-link" href="{% url 'view-supply' %}"><p class="nav-item">Supplies From Merchant</p></a>
+                        <a class="nav-link" href="{% url 'view-return' %}"><p class="nav-item">Returns To Merchant</p></a>
+                        <a class="nav-link" href="{% url 'view-issue' %}"><p class="nav-item">Issue To Department</p></a>
+                        <a class="nav-link" href="{% url 'view-dept-return' %}"><p class="nav-item">Returns From Department</p></a>
+                    
+                        {% else %}
+                        <a class="nav-link" href="{% url 'dept-receipt' %}"><p class="nav-item">Items From Store</p></a>
+                        <a class="nav-link" href="{% url 'dept-issue' %}"><p class="nav-item">Items To Store</p></a>
+                        {% endif %}
+                    {% endif %} 
+                {% endif %}               
+                <header>
+                    <p>
+                        &nbsp;
+                    </p>
+                </header>
+                <a class="nav-link" href="{% url 'password_change' %}"><p class="nav-item">Password Change</p></a>
+                <a class="nav-link" href="{% url 'logout' %}"><p class="nav-item">Logout</p></a>
+        </div>
+        </nav>
+        <main>
+            <div id="top-logo">
+                <img id="d-logo" src="{% static 'images/logos.png' %}" />
+            </div>
+            <!-- <header>
+                <h2>
+                {% block header %}
+                {% endblock %}
+                </h2>
+            </header> -->
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="content">
+                {% block main %}
+                {% endblock %}
+            </div>
+        </main>
+        {% endblock %}
+        <footer>
+            Copyright 2020 
+            <a href="https://bslafrica.com/">
+                BSL
+            </a> 
+            &nbsp; | &nbsp; Powered by: 
+            <a href="http://diamantemine.com/">DML</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -4,28 +4,29 @@ from django.db.models.signals import post_save, pre_save
 
 
 # Create your models here.
-TITLE = (
-    ('Mr', 'Mr'),
-    ('Mrs', 'Mrs'),
-    ('Miss', 'Miss'),
-)
+# TITLE = (
+#     ('Mr', 'Mr'),
+#     ('Mrs', 'Mrs'),
+#     ('Miss', 'Miss'),
+# )
 
-class Merchant(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    name = models.CharField(max_length=250, help_text="Business Name")
-    phone_number = models.CharField(max_length=13)
-    email_address = models.EmailField()
-    address = models.TextField()
-    liaison_officer = models.CharField(max_length=250)
-    liaison_officer_salutation = models.CharField(max_length=10, choices=TITLE)
-    active = models.BooleanField(default=False)
+# class Merchant(models.Model):
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=250, help_text="Business Name")
+#     phone_number = models.CharField(max_length=13)
+#     email_address = models.EmailField()
+#     address = models.TextField()
+#     liaison_officer = models.CharField(max_length=250)
+#     liaison_officer_salutation = models.CharField(max_length=10, choices=TITLE)
+#     active = models.BooleanField(default=False)
+#     date = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
-    @property
-    def the_merchant(self):
-        return f"{self.liaison_officer_salutation} {self.liaison_officer}"
+#     @property
+#     def the_merchant(self):
+#         return f"{self.liaison_officer_salutation} {self.liaison_officer}"
 
 BRANCHES = (
     ('branch1', 'branch1'),
@@ -62,6 +63,7 @@ class Officer(models.Model):
     email_address = models.EmailField()
     details = models.TextField(null=True, blank=True)
     active = models.BooleanField(default=True)
+    date = models.DateField(auto_now_add=True)
 
 
     def __str__(self):
@@ -70,8 +72,9 @@ class Officer(models.Model):
     
 def set_staff_receiver(sender, instance, *args, **kwargs):
     the_user = instance.user
+    the_user.is_active = instance.active
     if not the_user.is_staff:
         the_user.is_staff = True
-        the_user.save()
+    the_user.save()
 
 post_save.connect(set_staff_receiver, sender=Officer)

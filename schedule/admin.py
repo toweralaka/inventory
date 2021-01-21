@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (MerchantReturn, MerchantSupply, StockBarcode, StockReceipt, 
 StockReturned, ItemIssued, ItemRetrieved, DepartmentalProductReceipt, Product,
-DepartmentalProductSupply, ProductStock, PurchaseOrder)
+DepartmentalProductSupply, ProductStock, PurchaseOrder, DepartmentReturn, Merchant)
 # Register your models here.
 
 class ProductStockAdmin(admin.ModelAdmin):
@@ -16,6 +16,12 @@ class MerchantReturnAdmin(admin.ModelAdmin):
     # search_fields = ('product__name', 'ref_code')
 
 
+class DepartmentReturnAdmin(admin.ModelAdmin):
+    list_display = ('branch', 'product', 'quantity', 'date', 'balance', 'comment')
+
+
+
+
 admin.site.register(MerchantReturn, MerchantReturnAdmin)
 admin.site.register(MerchantSupply)
 admin.site.register(StockReturned)
@@ -28,6 +34,7 @@ admin.site.register(DepartmentalProductSupply)
 admin.site.register(ProductStock, ProductStockAdmin)
 admin.site.register(Product)
 admin.site.register(PurchaseOrder)
-# admin.site.register(RecordBuffer)
+admin.site.register(DepartmentReturn, DepartmentReturnAdmin)
+admin.site.register(Merchant)
 # admin.site.register()
 # admin.site.register()
