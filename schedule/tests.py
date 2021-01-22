@@ -36,7 +36,7 @@ class ProductModelTests(TestCase):
     #     merch = Merchant.objects.get(pk=1)
     #     d_product = Product(merchant=merch)
     #     self.assertIs(d_product.sent_purchase_order(), False)
-
+ 
 
 class PurchaseOrderModelTest(TestCase):
     def test_late_delivery(self):

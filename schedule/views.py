@@ -27,7 +27,7 @@ User = get_user_model()
 # @login_required
 # def view_supply(request, pk):
 #     item = get_object_or_404(MerchantSupply, pk=pk)
-#     return render(request, 'inventory/item-view.html')
+#     return render(request, 'schedule/item-view.html')
 
 #merchant's interaction with store
 @login_required
@@ -43,7 +43,7 @@ def merchant_supply_view(request):
             'object_list': supplies,
             'pending_list': pending_list,
         }
-        return render(request, 'inventory/merchant_supply.html', context)
+        return render(request, 'schedule/merchant_supply.html', context)
 
 @login_required
 def merchant_confirm_supply(request, pk):
@@ -67,12 +67,12 @@ def merchant_confirm_supply(request, pk):
                         'object_list': supplies,
                         'form': form,
                     }
-                    return render(request, 'inventory/merchant_confirm_supply.html', context)
+                    return render(request, 'schedule/merchant_confirm_supply.html', context)
             context = {
                 'object_list': supplies,
                 'form': form,
             }
-            return render(request, 'inventory/merchant_confirm_supply.html', context)
+            return render(request, 'schedule/merchant_confirm_supply.html', context)
         else:
             return HttpResponseRedirect('/')
 
@@ -90,7 +90,7 @@ def merchant_return_view(request):
             'object_list': returns,
             'pending_list': pending_list,
         }
-        return render(request, 'inventory/merchant_return.html', context)
+        return render(request, 'schedule/merchant_return.html', context)
 
 @login_required
 def merchant_confirm_return(request, pk):
@@ -115,12 +115,12 @@ def merchant_confirm_return(request, pk):
                         'form': form,
                     }
                     return render(
-                        request, 'inventory/merchant_confirm_return.html', context)
+                        request, 'schedule/merchant_confirm_return.html', context)
             context = {
                 'object_list': returns,
                 'form': form,
             }
-            return render(request, 'inventory/merchant_confirm_return.html', context)
+            return render(request, 'schedule/merchant_confirm_return.html', context)
         else:
             return HttpResponseRedirect('/')
 
@@ -149,12 +149,12 @@ def stock_receipts(request):
                     'object_list': supplies,
                     'form': form,
                 }
-                return render(request, 'inventory/stock_receipt.html', context)
+                return render(request, 'schedule/stock_receipt.html', context)
         context = {
             'object_list': supplies,
             'form': form,
         }
-        return render(request, 'inventory/stock_receipt.html', context)
+        return render(request, 'schedule/stock_receipt.html', context)
     
 
 @login_required
@@ -183,12 +183,12 @@ def update_stock_receipt(request, pk):
                         'object_list': supplies,
                         'form': form,
                     }
-                    return render(request, 'inventory/stock_update.html', context)
+                    return render(request, 'schedule/stock_update.html', context)
             context = {
                 'object_list': supplies,
                 'form': form,
             }
-            return render(request, 'inventory/stock_update.html', context)
+            return render(request, 'schedule/stock_update.html', context)
         else:
             n1 = "\n"
             display_message = (f"{receipt.officer.name} made the entry "
@@ -217,12 +217,12 @@ def stock_return(request):
                     'object_list': supplies,
                     'form': form,
                 }
-                return render(request, 'inventory/stock_return.html', context)
+                return render(request, 'schedule/stock_return.html', context)
         context = {
             'object_list': supplies,
             'form': form,
         }
-        return render(request, 'inventory/stock_return.html', context)
+        return render(request, 'schedule/stock_return.html', context)
 
 @login_required
 def update_stock_return(request, pk):
@@ -247,12 +247,12 @@ def update_stock_return(request, pk):
                         'form': form,
                     }
                     return render(
-                        request, 'inventory/stock_return_update.html', context)
+                        request, 'schedule/stock_return_update.html', context)
             context = {
                 'object_list': returns,
                 'form': form,
             }
-            return render(request, 'inventory/stock_return_update.html', context)
+            return render(request, 'schedule/stock_return_update.html', context)
         else:
             n1 = "\n"
             display_message = (f"{receipt.officer.name} made the entry "
@@ -285,12 +285,12 @@ def items_issued(request):
                     'object_list': supplies,
                     'form': form,
                 }
-                return render(request, 'inventory/items_issued.html', context)
+                return render(request, 'schedule/items_issued.html', context)
         context = {
             'object_list': supplies,
             'form': form,
         }
-        return render(request, 'inventory/items_issued.html', context)
+        return render(request, 'schedule/items_issued.html', context)
 
 @login_required
 def dept_receipt_view(request):
@@ -309,7 +309,7 @@ def dept_receipt_view(request):
             'object_list': receipts,
             'pending_list': pending_list,
         }
-        return render(request, 'inventory/dept_receipts.html', context)
+        return render(request, 'schedule/dept_receipts.html', context)
 
 def confirm_dept_receipt(request, pk):
     if not request.user.is_staff:
@@ -334,12 +334,12 @@ def confirm_dept_receipt(request, pk):
                         'object_list': receipts,
                         'form': form,
                     }
-                    return render(request, 'inventory/dept_confirm_receipts.html', context)
+                    return render(request, 'schedule/dept_confirm_receipts.html', context)
             context = {
                 'object_list': receipts,
                 'form': form,
             }
-            return render(request, 'inventory/dept_confirm_receipts.html', context)
+            return render(request, 'schedule/dept_confirm_receipts.html', context)
         else:
             n1 = "\n"
             display_message = (f"{receipt.department_officer.name} made the entry "
@@ -370,12 +370,12 @@ def update_items_issued(request, pk):
                         'form': form,
                     }
                     return render(
-                        request, 'inventory/item_issue_update.html', context)
+                        request, 'schedule/item_issue_update.html', context)
             context = {
                 'object_list': issues,
                 'form': form,
             }
-            return render(request, 'inventory/item_issue_update.html', context)
+            return render(request, 'schedule/item_issue_update.html', context)
         else:
             n1 = "\n"
             display_message = (f"{issue.officer.name} made the entry "
@@ -404,12 +404,12 @@ def items_received(request):
                     'object_list': returns,
                     'form': form,
                 }
-                return render(request, 'inventory/items_receipt.html', context)
+                return render(request, 'schedule/items_receipt.html', context)
         context = {
             'object_list': returns,
             'form': form,
         }
-        return render(request, 'inventory/items_receipt.html', context)
+        return render(request, 'schedule/items_receipt.html', context)
 
 #departments' interaction with store
 @login_required
@@ -427,7 +427,7 @@ def dept_return_view(request):
             'object_list': returns,
             'pending_list': pending_list,
         }
-        return render(request, 'inventory/dept_returns.html', context)
+        return render(request, 'schedule/dept_returns.html', context)
 
 
 def confirm_dept_return(request, pk):
@@ -453,12 +453,12 @@ def confirm_dept_return(request, pk):
                         'object_list':returns,
                         'form': form,
                     }
-                    return render(request, 'inventory/dept_confirm_returns.html', context)
+                    return render(request, 'schedule/dept_confirm_returns.html', context)
             context = {
                 'object_list':returns,
                 'form': form,
             }
-            return render(request, 'inventory/dept_confirm_returns.html', context)
+            return render(request, 'schedule/dept_confirm_returns.html', context)
         else:
             n1 = "\n"
             display_message = (f"{receipt.department_officer.name} made the entry "
@@ -490,12 +490,12 @@ def update_items_received(request, pk):
                         'form': form,
                     }
                     return render(
-                        request, 'inventory/items_received_update.html', context)
+                        request, 'schedule/items_received_update.html', context)
             context = {
                 'object_list': receipts,
                 'form': form,
             }
-            return render(request, 'inventory/items_received_update.html', context)
+            return render(request, 'schedule/items_received_update.html', context)
         else:
             n1 = "\n"
             display_message = (f"{receipt.officer.name} made the entry "
@@ -512,7 +512,7 @@ def control_view_supply(request):
         context = {
             'object_list': object_list,
         }
-        return render(request, 'inventory/ctrl_view_supply.html', context)
+        return render(request, 'schedule/ctrl_view_supply.html', context)
 
 @login_required
 def control_view_return(request):
@@ -523,7 +523,7 @@ def control_view_return(request):
         context = {
             'object_list': object_list,
         }
-        return render(request, 'inventory/ctrl_view_return.html', context)
+        return render(request, 'schedule/ctrl_view_return.html', context)
 
 @login_required
 def control_view_issue(request):
@@ -534,7 +534,7 @@ def control_view_issue(request):
         context = {
             'object_list': object_list,
         }
-        return render(request, 'inventory/ctrl_view_issue.html', context)
+        return render(request, 'schedule/ctrl_view_issue.html', context)
 
 @login_required
 def control_view_dept_return(request):
@@ -545,7 +545,7 @@ def control_view_dept_return(request):
         context = {
             'object_list': object_list,
         }
-        return render(request, 'inventory/ctrl_view_dept_return.html', context)
+        return render(request, 'schedule/ctrl_view_dept_return.html', context)
 
 @login_required
 def control_delete_supply(request, pk):
@@ -578,20 +578,20 @@ def control_delete_supply(request, pk):
                     'form': form,
                     'display_message': "Invalid Ref Code!"
                 }
-                return render(request, 'inventory/ctrl_del_supply.html', context)
+                return render(request, 'schedule/ctrl_del_supply.html', context)
             else:
                 context = {
                     'item': item,
                     'object_list': object_list,
                     'form': form,
                 }
-                return render(request, 'inventory/ctrl_del_supply.html', context)
+                return render(request, 'schedule/ctrl_del_supply.html', context)
         context = {
             'item': item,
             'object_list': object_list,
             'form': form,
         }
-        return render(request, 'inventory/ctrl_del_supply.html', context)
+        return render(request, 'schedule/ctrl_del_supply.html', context)
 
 @login_required
 def control_delete_return(request, pk):
@@ -624,20 +624,20 @@ def control_delete_return(request, pk):
                     'form': form,
                     'display_message': "Invalid Ref Code!"
                 }
-                return render(request, 'inventory/ctrl_del_return.html', context)
+                return render(request, 'schedule/ctrl_del_return.html', context)
             else:
                 context = {
                     'item': item,
                     'object_list': object_list,
                     'form': form,
                 }
-                return render(request, 'inventory/ctrl_del_return.html', context)
+                return render(request, 'schedule/ctrl_del_return.html', context)
         context = {
             'item': item,
             'object_list': object_list,
             'form': form,
         }
-        return render(request, 'inventory/ctrl_del_return.html', context)
+        return render(request, 'schedule/ctrl_del_return.html', context)
 
 @login_required
 def control_delete_issue(request, pk):
@@ -670,20 +670,20 @@ def control_delete_issue(request, pk):
                     'form': form,
                     'display_message': "Invalid Ref Code!"
                 }
-                return render(request, 'inventory/ctrl_del_issue.html', context)
+                return render(request, 'schedule/ctrl_del_issue.html', context)
             else:
                 context = {
                     'item': item,
                     'object_list': object_list,
                     'form': form,
                 }
-                return render(request, 'inventory/ctrl_del_issue.html', context)
+                return render(request, 'schedule/ctrl_del_issue.html', context)
         context = {
             'item': item,
             'object_list': object_list,
             'form': form,
         }
-        return render(request, 'inventory/ctrl_del_issue.html', context)
+        return render(request, 'schedule/ctrl_del_issue.html', context)
 
 @login_required
 def control_delete_dept_return(request, pk):
@@ -716,20 +716,20 @@ def control_delete_dept_return(request, pk):
                     'form': form,
                     'display_message': "Invalid Ref Code!"
                 }
-                return render(request, 'inventory/ctrl_del_dept_return.html', context)
+                return render(request, 'schedule/ctrl_del_dept_return.html', context)
             else:
                 context = {
                     'item': item,
                     'object_list': object_list,
                     'form': form,
                 }
-                return render(request, 'inventory/ctrl_del_dept_return.html', context)
+                return render(request, 'schedule/ctrl_del_dept_return.html', context)
         context = {
             'item': item,
             'object_list': object_list,
             'form': form,
         }
-        return render(request, 'inventory/ctrl_del_dept_return.html', context)
+        return render(request, 'schedule/ctrl_del_dept_return.html', context)
 
 # @login_required
 # def control_view_supply(request, pk):
@@ -769,18 +769,18 @@ def view_stock_use(request):
                         'object_list': item_list,
                         'form': form,
                     }
-                    return render(request, 'inventory/ctrl_view_stock_use.html', context)
+                    return render(request, 'schedule/ctrl_view_stock_use.html', context)
             else:
                 context = {
                 'object_list': item_list,
                 'form': form,
             }
-            return render(request, 'inventory/ctrl_view_stock_use.html', context)
+            return render(request, 'schedule/ctrl_view_stock_use.html', context)
         context = {
             'object_list': item_list,
             'form': form,
         }
-        return render(request, 'inventory/ctrl_view_stock_use.html', context)
+        return render(request, 'schedule/ctrl_view_stock_use.html', context)
 
 def merchant_signup(request):
     form = MerchantForm()
@@ -805,8 +805,8 @@ def merchant_signup(request):
                 merchant.save()
             return HttpResponseRedirect('/accounts/login/')
         else:
-            return render(request, 'inventory/merchant_signup.html', {'form': form,})
-    return render(request, 'inventory/merchant_signup.html', {'form': form,})
+            return render(request, 'schedule/merchant_signup.html', {'form': form,})
+    return render(request, 'schedule/merchant_signup.html', {'form': form,})
 
 def staff_signup(request):
     form = StaffForm()
@@ -829,8 +829,8 @@ def staff_signup(request):
                 officer.save()
             return HttpResponseRedirect('/accounts/login/')
         else:
-            return render(request, 'inventory/staff_signup.html', {'form': form,})
-    return render(request, 'inventory/staff_signup.html', {'form': form,})
+            return render(request, 'schedule/staff_signup.html', {'form': form,})
+    return render(request, 'schedule/staff_signup.html', {'form': form,})
 
 @login_required
 def ctrl_create_staff(request):
@@ -857,8 +857,8 @@ def ctrl_create_staff(request):
             messages.add_message(request, messages.INFO, display_message)
             return HttpResponseRedirect('/')
         else:
-            return render(request, 'inventory/ctrl_create_staff.html', {'form': form,})
-    return render(request, 'inventory/ctrl_create_staff.html', {'form': form,})
+            return render(request, 'schedule/ctrl_create_staff.html', {'form': form,})
+    return render(request, 'schedule/ctrl_create_staff.html', {'form': form,})
 
 @login_required
 def ctrl_create_merchant(request):
@@ -888,8 +888,8 @@ def ctrl_create_merchant(request):
             messages.add_message(request, messages.INFO, display_message)
             return HttpResponseRedirect('/')
         else:
-            return render(request, 'inventory/ctrl_create_merchant.html', {'form': form,})
-    return render(request, 'inventory/ctrl_create_merchant.html', {'form': form,})
+            return render(request, 'schedule/ctrl_create_merchant.html', {'form': form,})
+    return render(request, 'schedule/ctrl_create_merchant.html', {'form': form,})
 
 @login_required
 def pending_users(request):
@@ -901,7 +901,7 @@ def pending_users(request):
         'officer_list': officer_list,
         'merchant_list': merchant_list,
         }
-    return render(request, 'inventory/ctrl_view_users.html', context)
+    return render(request, 'schedule/ctrl_view_users.html', context)
 
 @login_required
 def activate_user(request, pk):
@@ -936,7 +936,7 @@ def activate_user(request, pk):
         'merchant': merchant,
         'status': status,
         }
-    return render(request, 'inventory/ctrl_activate_user.html', context)
+    return render(request, 'schedule/ctrl_activate_user.html', context)
 
 @login_required
 def delete_user(request, pk):
@@ -972,7 +972,7 @@ def delete_user(request, pk):
         'merchant': merchant,
         'status': status,
         }
-    return render(request, 'inventory/ctrl_delete_user.html', context)
+    return render(request, 'schedule/ctrl_delete_user.html', context)
 
 @login_required
 def import_db(request):
@@ -994,7 +994,7 @@ def import_db(request):
                     'form': form,
                     'display_message': display_message
                     }
-                return render(request, 'inventory/ctrl_importdb.html', context)
+                return render(request, 'schedule/ctrl_importdb.html', context)
             else:
                 parturl = dfile.the_file
                 fileurl = os.path.join(settings.MEDIA_ROOT, str(parturl))
@@ -1038,16 +1038,16 @@ def import_db(request):
                         'form': form,
                         'object_list': object_list,
                         }
-                    return render(request, 'inventory/ctrl_importdb.html', context)
+                    return render(request, 'schedule/ctrl_importdb.html', context)
         else:
             context = {
                 'form': form,
                 }
-            return render(request, 'inventory/ctrl_importdb.html', context)
+            return render(request, 'schedule/ctrl_importdb.html', context)
     context = {
         'form': form,
         }
-    return render(request, 'inventory/ctrl_importdb.html', context)
+    return render(request, 'schedule/ctrl_importdb.html', context)
 
 
 @login_required

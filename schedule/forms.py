@@ -120,7 +120,8 @@ class StockReceiptForm(forms.ModelForm):
 
 class StockReturnedForm(forms.ModelForm):
     confirm_entry = forms.BooleanField(required=True)
-    comment = forms.CharField(widget=forms.Textarea(), required=True)
+    comment = forms.CharField(
+        label="Reason For Return", widget=forms.Textarea(), required=True)
     class Meta:
         model = StockReturned
         exclude = (
