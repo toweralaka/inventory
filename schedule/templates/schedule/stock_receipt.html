@@ -30,7 +30,7 @@
                     {% else %}
                         {#{%  %}#}
                         {% if request.user == item.officer.user %}
-                        <a href="{% url 'update-stock' pk=item.pk %}">Unverified(Edit)</a>
+                        <a href="{% url 'update-stock' pk=item.pk %}">Edit</a>
                         {% else %}
                         Unverified
                         {% endif %}

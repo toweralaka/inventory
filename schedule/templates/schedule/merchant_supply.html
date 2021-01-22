@@ -28,7 +28,7 @@
                     {% if item.verified %}
                     Verified
                     {% else %}
-                    <a href="{% url 'supply-confirm' pk=item.pk %}">Unverified(Edit)</a>
+                    <a class="link-btn" href="{% url 'supply-confirm' pk=item.pk %}">Edit</a>
                     {% endif %}
                 </td>
                 <td><a href="#">{{ item.ref_number }}</a></td>
@@ -55,7 +55,7 @@
                 <td>{{ item.date.date }}</td>
                 <td>{{ item.product }}</td>
                 <td>{{ item.quantity }}</td>
-                <td><a href="{% url 'supply-confirm' pk=item.pk %}">{{ item.ref_number }}</a></td>
+                <td><a class="link-btn" href="{% url 'supply-confirm' pk=item.pk %}">{{ item.ref_number }}</a></td>
             </tr>
             {% endfor %}
         </table>

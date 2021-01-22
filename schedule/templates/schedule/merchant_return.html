@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block main %}
-<h2>Supplies</h2>
+<h2>Returns</h2>
 <div class="row">
     <div class="records">
         <h3>Record Of Returns</h3>
@@ -35,7 +35,7 @@
             </tr>
             {% empty %}
             <tr>
-                <td class="empty" colspan="5"><p>No Confirmed Returns</p></td>
+                <td class="empty" colspan="5"><p>No Record Found</p></td>
             </tr>
             
             {% endfor %}
@@ -55,7 +55,7 @@
                 <td>{{ item.date.date }}</td>
                 <td>{{ item.supply.product }}</td>
                 <td>{{ item.quantity }}</td>
-                <td><a href="{% url 'return-confirm' pk=item.pk %}">{{ item.supply.ref_number }}</a></td>
+                <td><a class="link-btn" href="{% url 'return-confirm' pk=item.pk %}">{{ item.supply.ref_number }}</a></td>
             </tr>
             {% endfor %}
         </table>

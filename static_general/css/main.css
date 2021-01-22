@@ -79,6 +79,12 @@ main {
     text-align: center;
     text-transform: capitalize;
 }
+.small {
+    color: #8B2313;
+    font-size: 1.3vmax;
+    font-style: italic;
+    font-weight: 500;
+}
 .text-danger {
     color: #8B2313;
     font-size: 1.3vmax;
@@ -201,33 +207,7 @@ form input[type=submit], button {
     margin: auto;
     padding: 1%;
 }
-/* .terminal {
-    width: 80%;
-    text-overflow: scroll;
-    border: 1px solid gray;
-    margin: auto;
-    padding: 1%;
-}
-.code-head {
-    font-size: small;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 0;
-} */
-/* pre {
-    margin-top: 0;
-}
-pre code {
 
-    font-size: small;
-    background-color: #eee;
-    border: 1px solid #999;
-    display: block;
-    width: 80%;
-    padding: 2%;
-    margin: auto;
-    overflow: scroll;
-} */
 footer {
     opacity: 0.5;
     text-align: right;

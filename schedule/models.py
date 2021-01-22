@@ -321,7 +321,8 @@ class StockReceipt(models.Model):#(on verified, update Stock record)
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     merchant_ref_number = models.CharField(max_length=50, unique=True)
     ref_code = models.CharField(max_length=10, unique=True) #auto generate, same as merchant supply
-    merchant = models.ForeignKey(Merchant, on_delete=models.PROTECT) #(not necessary? why?)
+    merchant = models.ForeignKey(
+        Merchant, on_delete=models.PROTECT, limit_choices_to={'active':True}) #(not necessary? why?)
     # scan_in = models.ForeignKey(ScanIn, on_delete=models.PROTECT)
     date = models.DateTimeField(auto_now_add=True)
     quantity = models.PositiveIntegerField()#(increment as product is scanned in)
