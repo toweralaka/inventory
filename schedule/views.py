@@ -754,6 +754,8 @@ def view_stock_use(request):
                 item_list = ItemIssued.show_objects.filter(branch=branch,
                     date__gte=start_date, date__lte=end_date
                     ).order_by('date')
+                print(end_date)
+                print(item_list[0].date)
                 if 'export' in request.POST:
                     # Create the HttpResponse object with the appropriate CSV header.
                     response = HttpResponse(content_type='text/csv')

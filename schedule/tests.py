@@ -3,8 +3,7 @@ from django.utils import timezone
 
 from datetime import date, datetime, timedelta
 
-from .models import Product, PurchaseOrder
-from management.models import Merchant
+from .models import Product, PurchaseOrder, Merchant
 
 # if instance.is_reorder_level():
 #         if instance.sent_purchase_order():

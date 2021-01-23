@@ -1076,6 +1076,32 @@ def return_entry_receiver(sender, instance, *args, **kwargs):
 post_save.connect(return_entry_receiver, sender=DepartmentalProductSupply)
 
 
+class InterBranchIssue(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField()
+    # issuing_branch = models.ForeignKey(Product, on_delete=models.PROTECT)
+    officer = models.ForeignKey(
+        Officer, on_delete=models.PROTECT, related_name='issuing_officer')
+    recipient_branch = models.CharField(max_length=10, choices=BRANCHES)
+    recipient = models.ForeignKey(
+        Officer, on_delete=models.PROTECT, related_name='recipient')
+    ref_code = models.CharField(max_length=15, unique=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+
+class InterBranchReceipt(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField()
+    disburse_officer = models.ForeignKey(
+        Officer, on_delete=models.PROTECT, related_name='disburse_officer')
+    recipient_branch = models.CharField(max_length=10, choices=BRANCHES)
+    officer = models.ForeignKey(
+        Officer, on_delete=models.PROTECT, related_name='recipient_officer')
+    ref_code = models.CharField(max_length=15, unique=True)
+    date = models.DateTimeField(auto_now_add=True)
+    
+
+
 #To track items first in and ensure they are first out
 class StockBarcode(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)

@@ -39,7 +39,7 @@ Thumbs.db
 # My Generated Files#
 #####################
 my_secret.py
+my_secret.pyc
 .env
 *.txt
-favicon.png
-logos.png
+company/
